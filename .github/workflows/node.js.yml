@@ -18,12 +18,14 @@ jobs:
         run: |
           npm install
           npm run build
-  test:
-    runs-on: ubuntu-latest
       - uses: actions/upload-artifact@master
-    needs: build
+        with:
           name: webpack artifacts
           path: public/
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
       matrix:
         os: [ubuntu-latest, windows-2016]
         node-version: [12.x, 14.x]
@@ -33,6 +35,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - uses: actions/download-artifact@master
+      with:
+        name: webpack artifacts
+        path: public
     - name: npm install, and test
       run: |
         npm install
