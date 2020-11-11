@@ -8,6 +8,7 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  issue_comment:
 
 jobs:
   build:
@@ -45,4 +46,11 @@ jobs:
         npm test
       env:
         CI: true
+  comment:
+    runs-on: ubuntu-latest
+
+    if: contains(github.event.comment.body, 'boom')
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - run: echo Hello Boom Chaka Laka
     
