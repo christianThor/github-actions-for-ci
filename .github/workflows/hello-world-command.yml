@@ -68,7 +68,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.client_payload.pull_request.number }}
           body: |
-            HELLO WORLD!!!
+            HELLO WORLD ${{ github.event.client_payload.slash_command.args.unnamed.arg1 }}
 
             To teardown, comment with the `/teardown` command.
 
