@@ -39,8 +39,10 @@ jobs:
           git fetch --no-tags origin +refs/heads/*:refs/remotes/origin/*
 
       - name: Verify branch is up-to-date with master branch
+        env: 
+          PULL_REQUEST_HEAD_REF: ${{ github.client_payload.pull_request.head.ref }}
         run: |
-          if [ $(git log origin/${{ github.client_payload.pull_request.head.ref }}..origin/master --oneline | wc -l) -ne 0 ]
+          if [ $(git log origin/$PULL_REQUEST_HEAD_REF..origin/master --oneline | wc -l) -ne 0 ]
           then
             echo "Branch is not up-to-date with master branch!"
             exit 1
