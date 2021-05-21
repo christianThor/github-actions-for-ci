@@ -23,6 +23,10 @@ jobs:
           
       - name: ls
         run: ls -al
+        
+      - run: echo ${{ github.client_payload.pull_request.head }}
+      
+      - run: echo ${{ github.client_payload.pull_request.head.ref }}
 
       - name: Checkout branches
         run: |
