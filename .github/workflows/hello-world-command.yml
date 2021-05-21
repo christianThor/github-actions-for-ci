@@ -27,7 +27,7 @@ jobs:
 
       - name: Verify branch is up-to-date with master branch
         run: |
-          if [ $(git log origin/${{ github.client_payload.pull_request.head.ref }}..origin/master --oneline | wc -l) -ne 0 ]
+          if [ $(git log origin/${{ github.event.client_payload.pull_request.head.ref }}..origin/master --oneline | wc -l) -ne 0 ]
           then
             echo "Branch is not up-to-date with master branch!"
             exit 1
@@ -68,9 +68,11 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.client_payload.pull_request.number }}
           body: |
+
             HELLO WORLD!!!
             
             response: ${{ toJson(github.event.client_payload) }}
+
 
             To teardown, comment with the `/teardown` command.
 
