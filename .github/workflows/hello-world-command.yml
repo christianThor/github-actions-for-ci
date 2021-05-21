@@ -27,7 +27,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.client_payload.pull_request.number }}
           body: |
-            HELLO WORLD!!!
+            HELLO WORLD!!
             
             response: ${{ toJson(github.event.client_payload) }}
 
