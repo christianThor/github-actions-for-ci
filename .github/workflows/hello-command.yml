@@ -9,7 +9,7 @@ on:
         description: 'The comment-id of the slash command'
         required: true
       issue-number:
-        description: 'The issue number in which the slash command was made'
+        description: 'The issue number in which the slash command was madef'
         required: true
       actor:
         description: 'The user who executed the slash command'
