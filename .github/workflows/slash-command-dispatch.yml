@@ -19,7 +19,18 @@ jobs:
         uses: peter-evans/slash-command-dispatch@v2
         with:
           token: ${{ secrets.PAT }}
-          commands: |
-            hello-world
-          permission: none
-          issue-type: pull-request
+          config: >
+            [
+              {
+                "command": "hello",
+                "issue_type": "pull-request",
+                "static_args": [
+                  "repository=${{ github.repository }}",
+                  "comment-id=${{ github.event.comment.id }}",
+                  "issue-number=${{ github.event.issue.number }}",
+                  "actor=${{ github.actor }}"
+                ],
+                "dispatch_type": "workflow"
+              }
+            ]
+            
