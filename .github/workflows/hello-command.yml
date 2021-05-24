@@ -37,6 +37,7 @@ jobs:
           repository: ${{ github.event.inputs.repository }}
           issue-number: ${{ github.event.inputs.issue-number }}
           body: |
+            Hello ${{ github.event.inputs.ref }}
             Hello @${{ github.event.inputs.actor }}!
             [Click here to see the command run output][1]
             [1]: ${{ steps.vars.outputs.run-url }}
